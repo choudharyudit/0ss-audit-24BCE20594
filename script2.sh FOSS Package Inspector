@@ -1,0 +1,23 @@
+#!/bin/bash
+# Script 2: FOSS Package Inspector
+
+PACKAGE="git"
+
+echo "Checking installation status for: $PACKAGE"
+
+# Check if package is installed
+if dpkg -l $PACKAGE &>/dev/null; then
+    echo "Status: $PACKAGE is installed."
+    dpkg -s $PACKAGE | grep -E 'Version|License|Description'
+else
+    echo "Status: $PACKAGE is NOT installed."
+fi
+
+echo "--- Philosophy Note ---"
+case $PACKAGE in
+    git)   echo "Git: The tool Linus built when proprietary failed him." ;;
+    mysql) echo "MySQL: Open source at the heart of millions of apps." ;;
+    httpd) echo "Apache: The web server that built the open internet." ;;
+    vlc)   echo "VLC: A student project that became a global standard." ;;
+    *)     echo "$PACKAGE: A vital part of the FOSS ecosystem." ;;
+esac
